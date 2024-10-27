@@ -41,3 +41,39 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     })
 });
+
+//Exercise 3
+document.addEventListener('DOMContentLoaded', function() {
+    const gameBoard = document.getElementById('game-board');
+    const squares = gameBoard.querySelectorAll('div');
+
+    let Player_1 = 'X';
+    const gameState = Array(9).fill(null);
+
+    squares.forEach((square, index) => {
+        square.classList.add('square');
+
+        square.addEventListener('mouseover', function() {
+            if (!gameState[index]) {
+                square.classList.add('hover');
+            }
+        });
+
+        
+        square.addEventListener('mouseout', function() {
+            square.classList.remove('hover');
+        });
+
+      
+        square.addEventListener('click', function() {
+            if (!gameState[index]) {
+                gameState[index] = currentPlayer;
+                square.classList.add(currentPlayer);
+                square.textContent = currentPlayer;
+
+                
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            }
+        });
+    });
+});
